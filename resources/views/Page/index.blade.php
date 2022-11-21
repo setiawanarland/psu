@@ -247,8 +247,8 @@
             ];
 
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: new google.maps.LatLng(-5.677559, 119.758969),
+                zoom: 10,
+                center: new google.maps.LatLng(-5.63333000, 119.73333000),
                 mapTypeId: google.maps.MapTypeId.SATELLITE
             });
 
