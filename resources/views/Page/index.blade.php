@@ -60,6 +60,7 @@
                 <h5 class="text-uppercase">
                     survey penyediaan psu
                 </h5>
+                <hr>
                 <h6 class="text-capitalize active">
 
                 </h6>
