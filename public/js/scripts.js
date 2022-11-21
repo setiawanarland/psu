@@ -45,7 +45,7 @@
         height: '500px'
     });
     $('.recent-activity').slimScroll({
-        height: 'calc(100vh - 114px)'
+        height: 'calc(100vh - 70px)'
     });
     $('.settings-list').slimScroll({
         height: 'calc(100vh - 158px)'
