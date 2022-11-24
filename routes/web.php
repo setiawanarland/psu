@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LingkunganController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,13 @@ Route::get('set-tahun', [Controller::class, 'setTahun'])->name('set-tahun');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+
+    Route::prefix('lingkungan')->group(function () {
+        Route::get('/', [LingkunganController::class, 'index'])->name('lingkungan');
+        Route::get('/list', [LingkunganController::class, 'list'])->name('lingkungan-list');
+        Route::post('/lingkungan-store', [LingkunganController::class, 'store'])->name('lingkungan-store');
+        Route::get('/show/{id}', [LingkunganController::class, 'show'])->name('get-lingkungan');
+        Route::post('/lingkungan-update', [LingkunganController::class, 'update'])->name('lingkungan-update');
+        Route::delete('/delete/{id}', [LingkunganController::class, 'delete'])->name('lingkungan-delete');
+    });
 });
