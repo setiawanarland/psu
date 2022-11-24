@@ -1,7 +1,7 @@
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class="logo">
-            <a href="index.html"><img src="asset images/icon/logo.png" alt="ayyub tani logo"></a>
+            <a href="index.html"><img src="asset images/icon/logo.png" alt="disperkimtan logo"></a>
         </div>
     </div>
     <div class="main-menu">
