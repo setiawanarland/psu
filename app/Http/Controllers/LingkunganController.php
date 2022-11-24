@@ -35,10 +35,10 @@ class LingkunganController extends Controller
             ->get();
 
         foreach ($lingkungan as $key => $value) {
-            $district = Http::get("https://emsifa.github.io/api-wilayah-indonesia/api/district/{$value->kecamatan}.json");
-            $village = Http::get("https://emsifa.github.io/api-wilayah-indonesia/api/village/{$value->desa_kel}.json");
-            $value->nama_kecamatan = $district['name'];
-            $value->nama_desa_kel = $village['name'];
+            $district = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kecamatan/{$value->kecamatan}");
+            $village = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kelurahan/{$value->desa_kel}");
+            $value->nama_kecamatan = $district['nama'];
+            $value->nama_desa_kel = $village['nama'];
         }
 
         if ($lingkungan) {

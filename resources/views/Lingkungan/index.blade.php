@@ -99,14 +99,14 @@
                     columns: [{
                             data: 'nama_kecamatan',
                             render: function(data, type, row) {
-                                return data;
+                                return data.toUpperCase();
 
                             }
                         },
                         {
                             data: 'nama_desa_kel',
                             render: function(data, type, row) {
-                                return data;
+                                return data.toUpperCase();
                             }
                         },
                         {
@@ -266,6 +266,9 @@
         $('.tambahData, .btn-cancel').on('click', function() {
             $('.offset-area').toggleClass('show_hide');
             $('.settings-btn').toggleClass('active');
+            $("input").removeClass('is-invalid');
+            $("select").removeClass('is-invalid');
+            $("textarea").removeClass('is-invalid');
             var form = $('#lingkunganForm');
             form.attr('data-type', 'submit');
             form[0].reset();
@@ -394,12 +397,13 @@
         });
 
         function kecamatan() {
-            fetch(`http://www.emsifa.com/api-wilayah-indonesia/api/districts/7304.json`)
+            // fetch(`http://www.emsifa.com/api-wilayah-indonesia/api/districts/7304.json`)
+            fetch(`https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=7304`)
                 .then(response => response.json())
                 .then(districs => {
                     let html = '<option value="null">Pilih Kecamatan</option>';
-                    for (var i = 0; i < districs.length; i++) {
-                        html += "<option value=" + districs[i].id + ">" + districs[i].name +
+                    for (var i = 0; i < districs.kecamatan.length; i++) {
+                        html += "<option value=" + districs.kecamatan[i].id + ">" + districs.kecamatan[i].nama +
                             "</option>"
                     }
                     document.getElementById("kecamatan").innerHTML = html;
@@ -407,12 +411,12 @@
         }
 
         function lingkungan(districId) {
-            fetch(`http://www.emsifa.com/api-wilayah-indonesia/api/villages/${districId}.json`)
+            fetch(`https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=${districId}`)
                 .then(response => response.json())
                 .then(villages => {
                     let html = '';
-                    for (var i = 0; i < villages.length; i++) {
-                        html += "<option value=" + villages[i].id + ">" + villages[i].name +
+                    for (var i = 0; i < villages.kelurahan.length; i++) {
+                        html += "<option value=" + villages.kelurahan[i].id + ">" + villages.kelurahan[i].nama +
                             "</option>"
                     }
                     document.getElementById("desa_kel").innerHTML = html;
