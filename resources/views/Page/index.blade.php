@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Simple Map</title>
+    <title>Sipasauki Disperkimtan Jeneponto</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
 
@@ -29,6 +29,17 @@
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
 
     <style>
+        #preview {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 9999;
+            height: 100%;
+            width: 100%;
+            background: rgb(184, 189, 38);
+            display: flex;
+        }
+
         /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
         #map {
@@ -47,9 +58,12 @@
 
 <body>
 
+
     <div id="preloader">
         <div class="loader"></div>
     </div>
+
+    <div id="preview"></div>
 
     <div id="map"></div>
 
@@ -60,7 +74,7 @@
                 <h5 class="text-uppercase">
                     survey penyediaan psu
                 </h5>
-                <hr>
+                {{-- <hr> --}}
                 <h6 class="text-capitalize active">
 
                 </h6>
@@ -223,7 +237,7 @@
                         <div class="tm-title">
                             <h4 class="title-item text-uppercase">Foto lokasi</h4>
                         </div>
-                        <img src="{{ asset('images/psu/lorong1.jpg') }}" alt="" width="100%">
+                        <img src="{{ asset('images/psu/lorong1.jpg') }}" alt="" width="100%" class="mb-1">
                     </div>
                     <hr>
 
@@ -264,6 +278,11 @@
                     title: locations[i][0],
                     animation: google.maps.Animation.DROP,
                 });
+
+                // infowindow.setContent(
+                //     "<p><b>" + locations[i][0] + "</b>, about marker.</p>"
+                // );
+                // infowindow.open(map, marker);
 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
@@ -345,6 +364,20 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/sweetalert.js') }}"></script>
+
+
+    <script>
+        /*================================
+                    Preview
+                    ==================================*/
+
+        var preview = $('#preview');
+        $(window).on('load', function() {
+            preview.fadeOut('slow', function() {
+                $(this).remove();
+            });
+        });
+    </script>
 
 
 
