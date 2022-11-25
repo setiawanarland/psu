@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('lokasi')->group(function () {
         Route::get('/', [LokasiController::class, 'index'])->name('lokasi');
         Route::get('/list', [LokasiController::class, 'list'])->name('lokasi-list');
+        Route::get('/add', [LokasiController::class, 'create'])->name('lokasi-add');
         Route::post('/lokasi-store', [LokasiController::class, 'store'])->name('lokasi-store');
         Route::get('/show/{id}', [LokasiController::class, 'show'])->name('get-lokasi');
         Route::post('/lokasi-update', [LokasiController::class, 'update'])->name('lokasi-update');

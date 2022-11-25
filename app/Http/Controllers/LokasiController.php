@@ -63,7 +63,15 @@ class LokasiController extends Controller
      */
     public function create()
     {
-        //
+        $page_title = 'Sipasauki - Disperkimtan Jeneponto';
+        $page_description = 'Dashboard Admin';
+        $breadcrumbs = ['Add Lokasi'];
+
+        $lingkungan = DB::table('lingkungans')
+            ->select('id', 'lingkungan',)
+            ->get();
+
+        return view('lokasi.add', compact('page_title', 'page_description', 'breadcrumbs', 'lingkungan'));
     }
 
     public function store(Request $request)

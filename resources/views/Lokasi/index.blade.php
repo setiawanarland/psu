@@ -82,7 +82,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Data Lokasi</h4>
-                        <button type="button" class="btn d-flex btn-primary mb-3 pull-right tambahData">Tambah Data</button>
+                        {{-- <button type="button" class="btn d-flex btn-primary mb-3 pull-right tambahData">Tambah Data</button> --}}
+                        <a href="{{ route('lokasi-add') }}" class="btn d-flex btn-primary mb-3 pull-right">Tambah Data</a>
                         <div class="data-tables">
                             <table id="lokasiTable" class="text-cente">
                                 <thead class="bg-light text-capitalize">
