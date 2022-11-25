@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LingkunganController;
+use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/show/{id}', [LingkunganController::class, 'show'])->name('get-lingkungan');
         Route::post('/lingkungan-update', [LingkunganController::class, 'update'])->name('lingkungan-update');
         Route::delete('/delete/{id}', [LingkunganController::class, 'delete'])->name('lingkungan-delete');
+    });
+
+    Route::prefix('lokasi')->group(function () {
+        Route::get('/', [LokasiController::class, 'index'])->name('lokasi');
+        Route::get('/list', [LokasiController::class, 'list'])->name('lokasi-list');
+        Route::post('/lokasi-store', [LokasiController::class, 'store'])->name('lokasi-store');
+        Route::get('/show/{id}', [LokasiController::class, 'show'])->name('get-lokasi');
+        Route::post('/lokasi-update', [LokasiController::class, 'update'])->name('lokasi-update');
+        Route::delete('/delete/{id}', [LokasiController::class, 'delete'])->name('lokasi-delete');
     });
 });

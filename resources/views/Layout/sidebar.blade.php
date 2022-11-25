@@ -12,7 +12,10 @@
                     <li class="{{ Request::path() == 'dashboard' ? 'active' : '' }}"><a
                             href="{{ route('dashboard') }}"><i class="ti-dashboard"></i><span>dashboard</span></a></li>
                     <li class="{{ Request::path() == 'lingkungan' ? 'active' : '' }}"><a
-                            href="{{ route('lingkungan') }}"><i class="fa fa-map-o"></i><span>lingkungan</span></a>
+                            href="{{ route('lingkungan') }}"><i class="fa fa-server"></i><span>lingkungan</span></a>
+                    </li>
+                    <li class="{{ Request::path() == 'lokasi' ? 'active' : '' }}"><a href="{{ route('lokasi') }}"><i
+                                class="fa fa-map-o"></i><span>lokasi</span></a>
                     </li>
 
 
