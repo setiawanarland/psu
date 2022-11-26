@@ -92,29 +92,29 @@
                             <tr>
                                 <td>Baik</td>
                                 <td>:</td>
-                                <td>1 Buah</td>
+                                <td class="pju_baik"></td>
                             </tr>
                             <tr>
                                 <td>Rusak Sedang</td>
                                 <td>:</td>
-                                <td>1 Buah</td>
+                                <td class="pju_sedang"></td>
                             </tr>
                             <tr>
                                 <td>Rusak Berat</td>
                                 <td>:</td>
-                                <td>1 Buah</td>
+                                <td class="pju_berat"></td>
                             </tr>
                         </table>
                         <span class="font-weight-bold">Jumlah PJU yang dibutuhkan</span>
                         <table width="100%" class="table table-borderless p-0 m-0">
                             <tr>
-                                <td>1 Buah</td>
+                                <td class="pju_kebutuhan"></td>
                             </tr>
                         </table>
                         <span class="font-weight-bold">Jumlah rumah tangga yang terlayani</span>
                         <table width="100%" class="table table-borderless p-0 m-0">
                             <tr>
-                                <td>1 Buah</td>
+                                <td class="pju_terlayani"></td>
                             </tr>
                         </table>
                     </div>
@@ -129,22 +129,22 @@
                             <tr>
                                 <td>Baik</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="jalan_lingkungan_baik"></td>
                             </tr>
                             <tr>
                                 <td>Rusak Sedang</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="jalan_lingkungan_sedang"></td>
                             </tr>
                             <tr>
                                 <td>Rusak Berat</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="jalan_lingkungan_berat"></td>
                             </tr>
                             <tr>
                                 <td>Total panjang</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="jalan_lingkungan_total"></td>
                             </tr>
                         </table>
                         <span class="font-weight-bold">Jalan lingkungan yang dibutuhkan</span>
@@ -152,28 +152,28 @@
                             <tr>
                                 <td>1 meter</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="jalan_lingkungan_kebutuhan_1m"></td>
                             </tr>
                             <tr>
                                 <td>1,1 - 2 Meter</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="jalan_lingkungan_kebutuhan_2m"></td>
                             </tr>
                             <tr>
                                 <td>2,1 - 3 Meter</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="jalan_lingkungan_kebutuhan_3m"></td>
                             </tr>
                             <tr>
                                 <td>> 3 Meter</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="jalan_lingkungan_kebutuhan_4m"></td>
                             </tr>
                         </table>
                         <span class="font-weight-bold">Jumlah rumah tangga yang terlayani</span>
                         <table width="100%" class="table table-borderless">
                             <tr>
-                                <td>1 Buah</td>
+                                <td class="jalan_lingkungan_terlayani"></td>
                             </tr>
                         </table>
                     </div>
@@ -188,22 +188,22 @@
                             <tr>
                                 <td>Baik</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="drainase_baik"></td>
                             </tr>
                             <tr>
                                 <td>Rusak Sedang</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="drainase_sedang"></td>
                             </tr>
                             <tr>
                                 <td>Rusak Berat</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="drainase_berat"></td>
                             </tr>
                             <tr>
                                 <td>Total panjang</td>
                                 <td>:</td>
-                                <td>1 Meter</td>
+                                <td class="drainase_total"></td>
                             </tr>
                         </table>
                         <span class="font-weight-bold">Drainase yang dibutuhkan</span>
@@ -211,23 +211,23 @@
                             <tr>
                                 <td>40 CM</td>
                                 <td>:</td>
-                                <td>1 CM</td>
+                                <td class="drainase_kebutuhan_40cm"></td>
                             </tr>
                             <tr>
                                 <td>50 CM</td>
                                 <td>:</td>
-                                <td>1 CM</td>
+                                <td class="drainase_kebutuhan_50cm"></td>
                             </tr>
                             <tr>
                                 <td>60 CM</td>
                                 <td>:</td>
-                                <td>1 CM</td>
+                                <td class="drainase_kebutuhan_60cm"></td>
                             </tr>
                         </table>
                         <span class="font-weight-bold">Jumlah rumah tangga yang terlayani</span>
                         <table width="100%" class="table table-borderless">
                             <tr>
-                                <td>1 Buah</td>
+                                <td class="drainase_terlayani"></td>
                             </tr>
                         </table>
                     </div>
@@ -237,7 +237,7 @@
                         <div class="tm-title">
                             <h4 class="title-item text-uppercase">Foto lokasi</h4>
                         </div>
-                        <img src="{{ asset('images/psu/lorong1.jpg') }}" alt="" width="100%" class="mb-1">
+                        <img src="" alt="" width="100%" class="mb-1 foto_lokasi">
                     </div>
                     <hr>
 
@@ -250,6 +250,8 @@
     <script src="{{ asset('js/mapsJavaScriptAPI.js') }}" async defer></script>
 
     <script>
+        var data = {!! $data !!}
+        console.log(data);
         var map;
 
         function initMap() {
@@ -271,48 +273,128 @@
 
             var marker, i;
 
-            for (i = 0; i < locations.length; i++) {
+            $.each(data, function(key, value) {
+
+                console.log(key);
+
                 marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    position: new google.maps.LatLng(value.lattitude, value.longitude),
                     map: map,
-                    title: locations[i][0],
+                    title: value.nama_lokasi,
                     animation: google.maps.Animation.DROP,
                 });
 
-                // infowindow.setContent(
-                //     "<p><b>" + locations[i][0] + "</b>, about marker.</p>"
-                // );
-                // infowindow.open(map, marker);
-
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
-                        // infowindow.setContent(
-                        //     '<div id="content">' +
-                        //     '<div id="siteNotice">' +
-                        //     "</div>" +
-                        //     '<h1 id="firstHeading" class="firstHeading">' + locations[i][0] + '</h1>' +
-                        //     '<div id="bodyContent">' +
-                        //     "<p><b>" + locations[i][0] + "</b>, about marker.</p>" +
-                        //     "<ul>" +
-                        //     "<li>list</li>" +
-                        //     "<li>list</li>" +
-                        //     "<li>list</li>" +
-                        //     "</ul>" +
-                        //     "</div>" +
-                        //     "</div>"
-                        // );
-                        // infowindow.open(map, marker);
 
                         $('.offset-area').removeClass('show_hide');
                         setTimeout(() => {
                             $('.offset-area').addClass('show_hide');
-                            $('h6.active').html(locations[i][0] + ", pastur, empoang, binamu");
+                            $('h6.active').html(value.nama_lokasi +
+                                ", pastur, empoang, binamu");
+
+                            $('.pju_baik').html(value.pju_baik + " Buah");
+                            $('.pju_sedang').html(value.pju_sedang + " Buah");
+                            $('.pju_berat').html(value.pju_berat + " Buah");
+                            $('.pju_kebutuhan').html(value.pju_kebutuhan + " Buah");
+                            $('.pju_terlayani').html(value.pju_terlayani + " Buah");
+
+                            $('.jalan_lingkungan_baik').html(value.jalan_lingkungan_baik +
+                                " Meter");
+                            $('.jalan_lingkungan_sedang').html(value
+                                .jalan_lingkungan_sedang + " Meter");
+                            $('.jalan_lingkungan_berat').html(value.jalan_lingkungan_berat +
+                                " Meter");
+                            $('.jalan_lingkungan_total').html(value.jalan_lingkungan_total +
+                                " Meter");
+                            $('.jalan_lingkungan_kebutuhan_1m').html(value
+                                .jalan_lingkungan_kebutuhan_1m +
+                                " Meter");
+                            $('.jalan_lingkungan_kebutuhan_2m').html(value
+                                .jalan_lingkungan_kebutuhan_2m +
+                                " Meter");
+                            $('.jalan_lingkungan_kebutuhan_3m').html(value
+                                .jalan_lingkungan_kebutuhan_3m +
+                                " Meter");
+                            $('.jalan_lingkungan_kebutuhan_4m').html(value
+                                .jalan_lingkungan_kebutuhan_4m +
+                                " Meter");
+                            $('.jalan_lingkungan_terlayani').html(value
+                                .jalan_lingkungan_terlayani +
+                                " Buah");
+
+                            $('.drainase_baik').html(value.drainase_baik +
+                                " CM");
+                            $('.drainase_sedang').html(value
+                                .drainase_sedang + " CM");
+                            $('.drainase_berat').html(value.drainase_berat +
+                                " CM");
+                            $('.drainase_total').html(value.drainase_total +
+                                " CM");
+                            $('.drainase_kebutuhan_40cm').html(value
+                                .drainase_kebutuhan_40cm +
+                                " CM");
+                            $('.drainase_kebutuhan_50cm').html(value
+                                .drainase_kebutuhan_50cm +
+                                " CM");
+                            $('.drainase_kebutuhan_60cm').html(value
+                                .drainase_kebutuhan_60cm +
+                                " CM");
+                            $('.drainase_kebutuhan_terlayani').html(value
+                                .drainase_kebutuhan_terlayani +
+                                " Buah");
+
+                            $('.foto_lokasi').attr("src", '/image/' + value.image + '');
+                            $('.foto_lokasi').attr("width", '100%');
                         }, 500);
 
 
                     }
                 })(marker, i));
-            }
+            });
+
+            // for (i = 0; i < locations.length; i++) {
+            //     marker = new google.maps.Marker({
+            //         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            //         map: map,
+            //         title: locations[i][0],
+            //         animation: google.maps.Animation.DROP,
+            //     });
+
+            //     // infowindow.setContent(
+            //     //     "<p><b>" + locations[i][0] + "</b>, about marker.</p>"
+            //     // );
+            //     // infowindow.open(map, marker);
+
+            //     google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            //         return function() {
+            //             // infowindow.setContent(
+            //             //     '<div id="content">' +
+            //             //     '<div id="siteNotice">' +
+            //             //     "</div>" +
+            //             //     '<h1 id="firstHeading" class="firstHeading">' + locations[i][0] + '</h1>' +
+            //             //     '<div id="bodyContent">' +
+            //             //     "<p><b>" + locations[i][0] + "</b>, about marker.</p>" +
+            //             //     "<ul>" +
+            //             //     "<li>list</li>" +
+            //             //     "<li>list</li>" +
+            //             //     "<li>list</li>" +
+            //             //     "</ul>" +
+            //             //     "</div>" +
+            //             //     "</div>"
+            //             // );
+            //             // infowindow.open(map, marker);
+
+            //             $('.offset-area').removeClass('show_hide');
+            //             setTimeout(() => {
+            //                 $('.offset-area').addClass('show_hide');
+            //                 $('h6.active').html(locations[i][0] + ", pastur, empoang, binamu");
+            //             }, 500);
+
+
+            //         }
+            //     })(marker, i));
+            // }
         }
     </script>
 
@@ -368,8 +450,8 @@
 
     <script>
         /*================================
-                    Preview
-                    ==================================*/
+                                                                                                                                                                                                                                    Preview
+                                                                                                                                                                                                                                    ==================================*/
 
         var preview = $('#preview');
         $(window).on('load', function() {

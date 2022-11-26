@@ -132,26 +132,32 @@
                             <h4 class="header-title mt-5">Penerangan Jalan Umum (PJU)</h4>
                             <p class="font-14 mb-0">Jumlah PJU yang sudah ada</p>
 
-                            <div class="form-group" style="margin-bottom: 0px;">
-                                <label for="pju_baik" class="col-form-label">Baik</label>
-                                <input class="form-control" type="text" name="pju_baik" id="pju_baik">
-                                <div class="invalid-feedback"></div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Baik" name="pju_baik">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Buah</span>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>
-                            <div class="form-group" style="margin-bottom: 0px;">
-                                <label for="pju_rusak" class="col-form-label">Rusak sedang</label>
-                                <input class="form-control" type="text" name="pju_rusak" id="pju_rusak">
-                                <div class="invalid-feedback"></div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Rusak Sedang" name="pju_sedang">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Buah</span>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="pju_berat" class="col-form-label">Rusak berat</label>
-                                <input class="form-control" type="text" name="pju_berat" id="pju_berat">
-                                <div class="invalid-feedback"></div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Rusak Berat" name="pju_berat">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Buah</span>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>
 
                             <p class="font-14 mb-0">Jumlah PJU yang dibutuhkan</p>
 
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="PJU yang dibuthkan"
+                                <input type="text" class="form-control" placeholder="PJU yang dibutuhkan"
                                     name="pju_dibutuhkan">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Buah</span>
@@ -183,7 +189,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Rusak sedang"
-                                    name="jalan_lingkungan_rusak">
+                                    name="jalan_lingkungan_sedang">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Meter</span>
                                     <div class="invalid-feedback"></div>
@@ -257,7 +263,7 @@
                             <p class="font-14 mb-0">panjang drainase yang sudah dibangun</p>
 
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Baik" name=drainasebaik">
+                                <input type="text" class="form-control" placeholder="Baik" name="drainase_baik">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Meter</span>
                                     <div class="invalid-feedback"></div>
@@ -265,7 +271,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Rusak sedang"
-                                    name="drainase_rusak">
+                                    name="drainase_sedang">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Meter</span>
                                     <div class="invalid-feedback"></div>
@@ -292,7 +298,7 @@
 
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="40 CM"
-                                    name="drainase_kebutuhan_40cmm">
+                                    name="drainase_kebutuhan_40cm">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">CM</span>
                                     <div class="invalid-feedback"></div>
@@ -436,13 +442,13 @@
                                     showConfirmButton: false,
                                 });
                             } else if (data.invalid) {
-                                console.log(data);
+                                let first = [];
                                 $.each(data.invalid, function(key, value) {
-                                    console.log(key);
-                                    console.log('errorType', typeof error);
+                                    first.push(key);
                                     $("input[name='" + key + "']").addClass('is-invalid').siblings(
                                         '.invalid-feedback').html(value[0]);
                                 });
+                                $("input[name='" + first[0] + "']").focus();
                             } else if (data.success) {
                                 swal.fire({
                                     text: "Data anda berhasil disimpan",
@@ -457,9 +463,11 @@
                                     form[0].reset();
                                     dataRow.destroy();
                                     dataRow.init();
+                                    window.location = "{{ route('lokasi') }}";
                                 });
                             }
                         }).catch(function(error) {
+                            console.log(error);
                             swal.fire({
                                 text: "Terjadi Kesalahan Sistem",
                                 title: "Error",
@@ -486,10 +494,11 @@
                                     showConfirmButton: false,
                                 });
                             } else if (data.invalid) {
+
                                 $.each(data.invalid, function(key, value) {
-                                    console.log(key);
                                     $("input[name='" + key + "']").addClass('is-invalid').siblings(
                                         '.invalid-feedback').html(value[0]);
+
                                 });
                             } else if (data.success) {
                                 swal.fire({
@@ -551,6 +560,21 @@
             $control.css('display', 'none');
             $('.image-button').css('display', 'inline-block');
             $('.image-button').css('margin', '0 auto');
+        });
+
+        // create lokasi
+        $(document).on('submit', "#lokasiForm[data-type='submit']", function(e) {
+            e.preventDefault();
+
+            $("input").removeClass('is-invalid');
+            $("select").removeClass('is-invalid');
+            $("textarea").removeClass('is-invalid');
+
+            var form = document.querySelector('form');
+            var formData = new FormData(this);
+
+            AxiosCall.post("{{ route('lokasi-store') }}", formData,
+                "#lokasiForm");
         });
 
 

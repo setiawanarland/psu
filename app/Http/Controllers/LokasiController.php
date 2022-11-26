@@ -6,6 +6,9 @@ use App\Models\Lokasi;
 use App\Http\Requests\StoreLokasiRequest;
 use App\Http\Requests\UpdateLokasiRequest;
 use App\Http\Response\GeneralResponse;
+use App\Models\Drainase;
+use App\Models\JalanLingkungan;
+use App\Models\Pju;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -82,6 +85,28 @@ class LokasiController extends Controller
             'lattitude' => 'required',
             'longitude' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'pju_baik' => 'required',
+            'pju_sedang' => 'required',
+            'pju_berat' => 'required',
+            'pju_dibutuhkan' => 'required',
+            'pju_terlayani' => 'required',
+            'jalan_lingkungan_baik' => 'required',
+            'jalan_lingkungan_sedang' => 'required',
+            'jalan_lingkungan_berat' => 'required',
+            'jalan_lingkungan_total' => 'required',
+            'jalan_lingkungan_kebutuhan_1m' => 'required',
+            'jalan_lingkungan_kebutuhan_2m' => 'required',
+            'jalan_lingkungan_kebutuhan_3m' => 'required',
+            'jalan_lingkungan_kebutuhan_3m+' => 'required',
+            'jalan_lingkungan_terlayani' => 'required',
+            'drainase_baik' => 'required',
+            'drainase_sedang' => 'required',
+            'drainase_berat' => 'required',
+            'drainase_total' => 'required',
+            'drainase_kebutuhan_40cm' => 'required',
+            'drainase_kebutuhan_50cm' => 'required',
+            'drainase_kebutuhan_60cm' => 'required',
+            'drainase_terlayani' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -103,6 +128,40 @@ class LokasiController extends Controller
         }
 
         $data->save();
+
+        $pju = new Pju();
+        $pju->lokasi_id = $data->id;
+        $pju->baik = intval($request->pju_baik);
+        $pju->sedang = intval($request->pju_sedang);
+        $pju->berat = intval($request->pju_berat);
+        $pju->kebutuhan = intval($request->pju_kebutuhan);
+        $pju->terlayani = intval($request->pju_terlayani);
+        $pju->save();
+
+        $jalanLingkungan = new JalanLingkungan();
+        $jalanLingkungan->lokasi_id = $data->id;
+        $jalanLingkungan->baik = intval($request->jalan_lingkungan_baik);
+        $jalanLingkungan->sedang = intval($request->jalan_lingkungan_sedang);
+        $jalanLingkungan->berat = intval($request->jalan_lingkungan_berat);
+        $jalanLingkungan->total_panjang = intval($request->jalan_lingkungan_total);
+        $jalanLingkungan->kebutuhan_1m = intval($request->jalan_lingkungan_kebutuhan_1m);
+        $jalanLingkungan->kebutuhan_2m = intval($request->jalan_lingkungan_kebutuhan_2m);
+        $jalanLingkungan->kebutuhan_3m = intval($request->jalan_lingkungan_kebutuhan_3m);
+        $jalanLingkungan->kebutuhan_4m = intval($request->jalan_lingkungan_kebutuhan_4m);
+        $jalanLingkungan->terlayani = intval($request->jalan_lingkungan_terlayani);
+        $jalanLingkungan->save();
+
+        $drainase = new Drainase();
+        $drainase->lokasi_id = $data->id;
+        $drainase->baik = intval($request->drainase_baik);
+        $drainase->sedang = intval($request->drainase_sedang);
+        $drainase->berat = intval($request->drainase_berat);
+        $drainase->total_panjang = intval($request->drainase_total);
+        $drainase->kebutuhan_40cm = intval($request->drainase_kebutuhan_40cm);
+        $drainase->kebutuhan_50cm = intval($request->drainase_kebutuhan_50cm);
+        $drainase->kebutuhan_60cm = intval($request->drainase_kebutuhan_60cm);
+        $drainase->terlayani = intval($request->drainase_terlayani);
+        $drainase->save();
 
         if ($data) {
             return (new GeneralResponse)->default_json(true, "Success", $data, 201);

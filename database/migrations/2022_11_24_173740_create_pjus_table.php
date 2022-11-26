@@ -15,6 +15,13 @@ class CreatePjusTable extends Migration
     {
         Schema::create('pjus', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('lokasi_id')->constrained('lokasis');
+            $table->integer('baik');
+            $table->integer('sedang');
+            $table->integer('berat');
+            $table->integer('kebutuhan');
+            $table->integer('terlayani');
+            $table->string('satuan', 50)->default('buah');
             $table->timestamps();
         });
     }
