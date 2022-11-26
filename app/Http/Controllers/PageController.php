@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class PageController extends Controller
 {
@@ -41,6 +42,14 @@ class PageController extends Controller
             ->join('jalan_lingkungans', 'lokasis.id', 'jalan_lingkungans.lokasi_id')
             ->join('drainases', 'lokasis.id', 'drainases.lokasi_id')
             ->get();
+
+        foreach ($data as $key => $value) {
+            // return $value;
+            $village = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kelurahan/{$value->desa_kel}");
+            $district = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kecamatan/{$value->kecamatan}");
+            $value->nama_kecamatan = $district['nama'];
+            $value->nama_desa_kel = $village['nama'];
+        }
 
         // return $data;
         return view('page.index', compact('data'));

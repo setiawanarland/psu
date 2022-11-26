@@ -255,13 +255,13 @@
         var map;
 
         function initMap() {
-            var locations = [
-                ['Sunggu Manai 1', -5.678660, 119.759909, 5],
-                ['Sunggu Manai 2', -5.673901, 119.753433, 4],
-                ['Jl. Pahlawan Lr. 1', -5.674109, 119.755991, 3],
-                ['Jl. Pahlawan Lr. 2', -5.674016, 119.755959, 2],
-                ['Jl. Pahlawan Lr. 3', -5.677559, 119.758969, 1]
-            ];
+            // var locations = [
+            //     ['Sunggu Manai 1', -5.678660, 119.759909, 5],
+            //     ['Sunggu Manai 2', -5.673901, 119.753433, 4],
+            //     ['Jl. Pahlawan Lr. 1', -5.674109, 119.755991, 3],
+            //     ['Jl. Pahlawan Lr. 2', -5.674016, 119.755959, 2],
+            //     ['Jl. Pahlawan Lr. 3', -5.677559, 119.758969, 1]
+            // ];
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 10,
@@ -291,7 +291,8 @@
                         setTimeout(() => {
                             $('.offset-area').addClass('show_hide');
                             $('h6.active').html(value.nama_lokasi +
-                                ", pastur, empoang, binamu");
+                                ", " + value.lingkungan + ", " + value.nama_desa_kel +
+                                ", " + value.nama_kecamatan + "");
 
                             $('.pju_baik').html(value.pju_baik + " Buah");
                             $('.pju_sedang').html(value.pju_sedang + " Buah");
@@ -450,8 +451,8 @@
 
     <script>
         /*================================
-                                                                                                                                                                                                                                    Preview
-                                                                                                                                                                                                                                    ==================================*/
+                                                                                                                                                                                                                                                    Preview
+                                                                                                                                                                                                                                                    ==================================*/
 
         var preview = $('#preview');
         $(window).on('load', function() {
