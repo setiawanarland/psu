@@ -341,8 +341,8 @@
                             $('.drainase_kebutuhan_60cm').html(value
                                 .drainase_kebutuhan_60cm +
                                 " CM");
-                            $('.drainase_kebutuhan_terlayani').html(value
-                                .drainase_kebutuhan_terlayani +
+                            $('.drainase_terlayani').html(value
+                                .drainase_terlayani +
                                 " Buah");
 
                             $('.foto_lokasi').attr("src", '/image/' + value.image + '');
@@ -451,8 +451,8 @@
 
     <script>
         /*================================
-                                                                                                                                                                                                                                                    Preview
-                                                                                                                                                                                                                                                    ==================================*/
+                                                                                                                                                                                                                                                        Preview
+                                                                                                                                                                                                                                                        ==================================*/
 
         var preview = $('#preview');
         $(window).on('load', function() {
