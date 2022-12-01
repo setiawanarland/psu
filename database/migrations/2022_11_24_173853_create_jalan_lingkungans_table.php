@@ -16,14 +16,14 @@ class CreateJalanLingkungansTable extends Migration
         Schema::create('jalan_lingkungans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('lokasi_id')->constrained('lokasis');
-            $table->integer('baik');
-            $table->integer('sedang');
-            $table->integer('berat');
-            $table->integer('total_panjang');
-            $table->integer('kebutuhan_1m');
-            $table->integer('kebutuhan_2m');
-            $table->integer('kebutuhan_3m');
-            $table->integer('kebutuhan_4m');
+            $table->float('baik');
+            $table->float('sedang');
+            $table->float('berat');
+            $table->float('total_panjang');
+            $table->float('kebutuhan_1m');
+            $table->float('kebutuhan_2m');
+            $table->float('kebutuhan_3m');
+            $table->float('kebutuhan_4m');
             $table->integer('terlayani');
             $table->string('satuan', 50)->default('meter');
             $table->timestamps();

@@ -141,26 +141,26 @@ class LokasiController extends Controller
 
         $jalanLingkungan = new JalanLingkungan();
         $jalanLingkungan->lokasi_id = $data->id;
-        $jalanLingkungan->baik = intval($request->jalan_lingkungan_baik);
-        $jalanLingkungan->sedang = intval($request->jalan_lingkungan_sedang);
-        $jalanLingkungan->berat = intval($request->jalan_lingkungan_berat);
-        $jalanLingkungan->total_panjang = intval($request->jalan_lingkungan_total);
-        $jalanLingkungan->kebutuhan_1m = intval($request->jalan_lingkungan_kebutuhan_1m);
-        $jalanLingkungan->kebutuhan_2m = intval($request->jalan_lingkungan_kebutuhan_2m);
-        $jalanLingkungan->kebutuhan_3m = intval($request->jalan_lingkungan_kebutuhan_3m);
-        $jalanLingkungan->kebutuhan_4m = intval($request->jalan_lingkungan_kebutuhan_4m);
+        $jalanLingkungan->baik = floatval(preg_replace('/[^\d\.]+/', '', $request->jalan_lingkungan_baik));
+        $jalanLingkungan->sedang = floatval(preg_replace('/[^\d\.]+/', '', $request->jalan_lingkungan_sedang));
+        $jalanLingkungan->berat = floatval(preg_replace('/[^\d\.]+/', '', $request->jalan_lingkungan_berat));
+        $jalanLingkungan->total_panjang = floatval(preg_replace('/[^\d\.]+/', '', $request->jalan_lingkungan_total));
+        $jalanLingkungan->kebutuhan_1m = floatval(preg_replace('/[^\d\.]+/', '', $request->jalan_lingkungan_kebutuhan_1m));
+        $jalanLingkungan->kebutuhan_2m = floatval(preg_replace('/[^\d\.]+/', '', $request->jalan_lingkungan_kebutuhan_2m));
+        $jalanLingkungan->kebutuhan_3m = floatval(preg_replace('/[^\d\.]+/', '', $request->jalan_lingkungan_kebutuhan_3m));
+        $jalanLingkungan->kebutuhan_4m = floatval(preg_replace('/[^\d\.]+/', '', $request->jalan_lingkungan_kebutuhan_4m));
         $jalanLingkungan->terlayani = intval($request->jalan_lingkungan_terlayani);
         $jalanLingkungan->save();
 
         $drainase = new Drainase();
         $drainase->lokasi_id = $data->id;
-        $drainase->baik = intval($request->drainase_baik);
-        $drainase->sedang = intval($request->drainase_sedang);
-        $drainase->berat = intval($request->drainase_berat);
-        $drainase->total_panjang = intval($request->drainase_total);
-        $drainase->kebutuhan_40cm = intval($request->drainase_kebutuhan_40cm);
-        $drainase->kebutuhan_50cm = intval($request->drainase_kebutuhan_50cm);
-        $drainase->kebutuhan_60cm = intval($request->drainase_kebutuhan_60cm);
+        $drainase->baik = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_baik));
+        $drainase->sedang = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_sedang));
+        $drainase->berat = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_berat));
+        $drainase->total_panjang = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_total));
+        $drainase->kebutuhan_40cm = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_kebutuhan_40cm));
+        $drainase->kebutuhan_50cm = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_kebutuhan_50cm));
+        $drainase->kebutuhan_60cm = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_kebutuhan_60cm));
         $drainase->terlayani = intval($request->drainase_terlayani);
         $drainase->save();
 

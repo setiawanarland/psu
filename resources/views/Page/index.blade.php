@@ -6,6 +6,8 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/author/jpt_logo.ico') }}">
+
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
@@ -29,29 +31,73 @@
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
 
     <style>
-        #preview {
-            position: fixed;
-            left: 0;
-            top: 0;
-            z-index: 9999;
-            height: 100%;
-            width: 100%;
-            background: rgb(184, 189, 38);
-            display: flex;
-        }
-
-        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-        #map {
-            height: 100%;
-        }
-
         /* Optional: Makes the sample page fill the window. */
         html,
         body {
             height: 100%;
             margin: 0;
             padding: 0;
+        }
+
+        #preview {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 9999;
+            height: 15%;
+            width: 100%;
+            background: rgb(184, 189, 38);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #close_preview {
+            margin: 5px;
+            padding: 5px;
+            font-size: 40px;
+            animation: popin 1.5s linear infinite 0s;
+        }
+
+        .navbar {
+            background-color: rgb(184, 189, 38);
+        }
+
+        .navbar-brand:hover {
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .image-on {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #map {
+            height: 100%;
+        }
+
+        @keyframes popin {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+
+            1% {
+                opacity: 0.1;
+                transform: scale(0);
+            }
+
+            99% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(0);
+            }
         }
     </style>
 </head>
@@ -62,8 +108,13 @@
     <div id="preloader">
         <div class="loader"></div>
     </div>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <img src="{{ asset('images/author/pu_logo.png') }}" class="image-on" alt="" width="7%">
+            <img src="{{ asset('images/author/jpt_logo.png') }}" class="image-on" alt="" width="7%">
+        </div>
+    </nav>
 
-    <div id="preview"></div>
 
     <div id="map"></div>
 
@@ -450,14 +501,10 @@
 
 
     <script>
-        /*================================
-                                                                                                                                                                                                                                                        Preview
-                                                                                                                                                                                                                                                        ==================================*/
-
-        var preview = $('#preview');
-        $(window).on('load', function() {
-            preview.fadeOut('slow', function() {
-                $(this).remove();
+        var close_preview = $('#close_preview');
+        close_preview.on('click', function() {
+            $('#preview').fadeOut('slow', function() {
+                $('#preview').remove();
             });
         });
     </script>

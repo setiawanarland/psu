@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Sipasauki - Disperkimtan Jeneponto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('images/icon/favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/author/jpt_logo.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
@@ -23,6 +23,76 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    <style>
+        .login-bg {
+            background: url(../images/author/jpt_logo.png) no-repeat center center fixed;
+            position: relative;
+            z-index: 1;
+            /* width: 100% */
+        }
+
+        .login-bg:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            height: 100%;
+            width: 100%;
+            background: #272727;
+            opacity: 0.7;
+        }
+
+        /* register 4 page */
+
+        .login-box-s2 {
+            min-height: 100vh;
+            background: #f9f9f9;
+            width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .login-box-s2 form {
+            margin: auto;
+            background: #fff;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .login-form-head {
+            text-align: center;
+            background: #bfad28;
+            padding: 50px;
+        }
+
+        .form-gp.focused label {
+            top: -15px;
+            color: #bfad28;
+        }
+
+        .form-gp i {
+            position: absolute;
+            right: 5px;
+            bottom: 15px;
+            color: #bfad28;
+            font-size: 16px;
+        }
+
+        .submit-btn-area button:hover {
+            background: #bfad28;
+            color: #ffffff;
+        }
+
+        .login-form-head h6 {
+            letter-spacing: 0;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 7px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,8 +113,20 @@
                     @csrf
 
                     <div class="login-form-head">
-                        <h4>PSU Disperkimtan</h4>
-                        <p>Jeneponto</p>
+                        <div class="row">
+                            <div class="col align-self-center">
+                                <img src="{{ asset('images/author/pu_logo.png') }}" alt="" width="20%">
+                                <img src="{{ asset('images/author/jpt_logo.png') }}" alt="" width="20%">
+                            </div>
+                        </div>
+
+                        <h4 class="mt-3 mb-0 pb-0">Sipasauki</h4>
+                        <p class="pb-1 mb-1">Sistem informasi Prasarana, Sarana dan Utilitas Umum</p>
+                        <h6>Dinas Perumahan dan Permukiman <br> Kab. Jeneponto</h6>
+
+                        {{-- Sistem Informasi Prasarana, Sarana dan Utilisan Umum
+                            Dinas Perumahan dan Pemukiman Kab. Jeneponto --}}
+
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">

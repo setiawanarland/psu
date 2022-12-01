@@ -16,13 +16,13 @@ class CreateDrainasesTable extends Migration
         Schema::create('drainases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('lokasi_id')->constrained('lokasis');
-            $table->integer('baik');
-            $table->integer('sedang');
-            $table->integer('berat');
-            $table->integer('total_panjang');
-            $table->integer('kebutuhan_40cm');
-            $table->integer('kebutuhan_50cm');
-            $table->integer('kebutuhan_60cm');
+            $table->float('baik');
+            $table->float('sedang');
+            $table->float('berat');
+            $table->float('total_panjang');
+            $table->float('kebutuhan_40cm');
+            $table->float('kebutuhan_50cm');
+            $table->float('kebutuhan_60cm');
             $table->integer('terlayani');
             $table->string('satuan', 50)->default('cm');
             $table->timestamps();
