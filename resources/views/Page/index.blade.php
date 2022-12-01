@@ -39,6 +39,10 @@
             padding: 0;
         }
 
+        .offset-area {
+            z-index: 99999;
+        }
+
         #preview {
             position: fixed;
             left: 0;
