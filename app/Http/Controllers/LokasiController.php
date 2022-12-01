@@ -38,17 +38,18 @@ class LokasiController extends Controller
     public function getList()
     {
         $lokasi = DB::table("lokasis")
+            ->join('lingkungans', 'lokasis.lingkungan_id', 'lingkungans.id')
             ->get();
 
         foreach ($lokasi as $key => $value) {
             $lingkungan = DB::table('lingkungans')->where('id', $value->lingkungan_id)->get();
-            foreach ($lingkungan as $index => $val) {
-                $village = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kelurahan/{$val->desa_kel}");
-                $district = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kecamatan/{$val->kecamatan}");
-                $value->nama_kecamatan = $district['nama'];
-                $value->nama_desa_kel = $village['nama'];
-                $value->lingkungan = $val->lingkungan;
-            }
+            // foreach ($lingkungan as $index => $val) {
+            //     $village = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kelurahan/{$val->desa_kel}");
+            //     $district = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kecamatan/{$val->kecamatan}");
+            //     $value->nama_kecamatan = $district['nama'];
+            //     $value->nama_desa_kel = $village['nama'];
+            //     $value->lingkungan = $val->lingkungan;
+            // }
             $value->coordinat = "$value->lattitude, $value->longitude";
         }
 

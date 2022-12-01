@@ -34,12 +34,12 @@ class LingkunganController extends Controller
         $lingkungan = DB::table("lingkungans")
             ->get();
 
-        foreach ($lingkungan as $key => $value) {
-            $district = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kecamatan/{$value->kecamatan}");
-            $village = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kelurahan/{$value->desa_kel}");
-            $value->nama_kecamatan = $district['nama'];
-            $value->nama_desa_kel = $village['nama'];
-        }
+        // foreach ($lingkungan as $key => $value) {
+        //     $district = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kecamatan/{$value->kecamatan}");
+        //     $village = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kelurahan/{$value->desa_kel}");
+        //     $value->nama_kecamatan = $district['nama'];
+        //     $value->nama_desa_kel = $village['nama'];
+        // }
 
         if ($lingkungan) {
             return (new GeneralResponse)->default_json(true, 'success', $lingkungan, 200);
@@ -69,6 +69,8 @@ class LingkunganController extends Controller
         $validator = validator::make($request->all(), [
             'kecamatan' => 'required',
             'desa_kel' => 'required',
+            'nama_kec' => 'required',
+            'nama_deskel' => 'required',
             'lingkungan' => 'required',
             'nama_kepala' => 'required',
         ]);
@@ -80,6 +82,8 @@ class LingkunganController extends Controller
         $data = new Lingkungan();
         $data->kecamatan = $request->kecamatan;
         $data->desa_kel = $request->desa_kel;
+        $data->nama_kec = $request->nama_kec;
+        $data->nama_deskel = $request->nama_deskel;
         $data->lingkungan = $request->lingkungan;
         $data->nama_kepala = $request->nama_kepala;
         $data->save();

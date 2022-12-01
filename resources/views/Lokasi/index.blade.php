@@ -203,14 +203,14 @@
                     ordering: false,
                     ajax: "{{ route('lokasi-list') }}",
                     columns: [{
-                            data: 'nama_kecamatan',
+                            data: 'nama_kec',
                             render: function(data, type, row) {
                                 return data.toUpperCase();
 
                             }
                         },
                         {
-                            data: 'nama_desa_kel',
+                            data: 'nama_deskel',
                             render: function(data, type, row) {
                                 return data.toUpperCase();
                             }

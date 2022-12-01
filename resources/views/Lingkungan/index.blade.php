@@ -48,6 +48,8 @@
                         @csrf
 
                         <input class="form-control" type="hidden" name="id" id="id">
+                        <input class="form-control" type="hidden" name="nama_kec" id="nama_kec">
+                        <input class="form-control" type="hidden" name="nama_deskel" id="nama_deskel">
 
                         <div class="form-group" style="margin-bottom: 0px;">
                             <label for="kecamatan" class="col-form-label">Kecamatan</label>
@@ -97,14 +99,14 @@
                     ordering: false,
                     ajax: "{{ route('lingkungan-list') }}",
                     columns: [{
-                            data: 'nama_kecamatan',
+                            data: 'nama_kec',
                             render: function(data, type, row) {
                                 return data.toUpperCase();
 
                             }
                         },
                         {
-                            data: 'nama_desa_kel',
+                            data: 'nama_deskel',
                             render: function(data, type, row) {
                                 return data.toUpperCase();
                             }
@@ -379,21 +381,15 @@
 
 
 
-        // format npwp
-        $('#npwp').on('keyup', function() {
-            $(this).val(formatNpwp($(this).val()));
-
-
-        });
-
-        function formatNpwp(value) {
-            if (typeof value === 'string') {
-                return value.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
-            }
-        };
-
         $('#kecamatan').on('change', function() {
             lingkungan($(this).val());
+            let namaKec = $("#kecamatan option:selected").text();
+            $('#nama_kec').val(namaKec);
+        });
+
+        $('#desa_kel').on('change', function() {
+            let namaDeskel = $("#desa_kel option:selected").text();
+            $('#nama_deskel').val(namaDeskel);
         });
 
         function kecamatan() {
