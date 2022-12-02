@@ -31,14 +31,6 @@
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
 
     <style>
-        /* Optional: Makes the sample page fill the window. */
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
         .offset-area {
             z-index: 99999;
         }
@@ -48,19 +40,40 @@
             left: 0;
             top: 0;
             z-index: 9999;
-            height: 15%;
+            height: 100%;
             width: 100%;
             background: rgb(184, 189, 38);
             display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
         }
 
-        #close_preview {
+        .layer {
+            /* background: url(../images/author/welcome.png) no-repeat center center fixed; */
+            background: url(../images/author/welcome.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            z-index: 1;
+            margin: auto;
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .layer .img {
+            z-index: 2;
+            /* position: relative; */
+        }
+
+        .layer .close {
+            z-index: 3;
+            /* position: relative; */
+        }
+
+        .layer .close #close_preview {
+            /* position: relative; */
             margin: 5px;
             padding: 5px;
             font-size: 40px;
+            z-index: 4;
             animation: popin 1.5s linear infinite 0s;
         }
 
@@ -70,12 +83,6 @@
 
         .navbar-brand:hover {
             text-shadow: 1px 1px 2px #000;
-        }
-
-        .image-on {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         #map {
@@ -103,6 +110,13 @@
                 transform: scale(0);
             }
         }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
     </style>
 </head>
 
@@ -112,13 +126,24 @@
     <div id="preloader">
         <div class="loader"></div>
     </div>
+
+    <div id="preview">
+        <div class="layer">
+            <div class="close">
+                <i id="close_preview" class="fa fa-close"></i>
+            </div>
+            <div class="img">
+                {{-- <img src="{{ asset('images/author/welcome.png') }}" class="image-on" alt="" width="100%"> --}}
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
             <img src="{{ asset('images/author/pu_logo.png') }}" class="image-on" alt="" width="7%">
             <img src="{{ asset('images/author/jpt_logo.png') }}" class="image-on" alt="" width="7%">
         </div>
     </nav>
-
 
     <div id="map"></div>
 
