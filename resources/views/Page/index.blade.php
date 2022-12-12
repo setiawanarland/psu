@@ -48,7 +48,7 @@
 
         .layer {
             /* background: url(../images/author/welcome.png) no-repeat center center fixed; */
-            background: url(../images/author/welcome.png);
+            background: url(../images/author/disperkimtan.png);
             background-repeat: no-repeat;
             background-size: 100% 100%;
             z-index: 1;
@@ -78,7 +78,15 @@
         }
 
         .navbar {
-            background-color: rgb(184, 189, 38);
+            background: url(../images/author/header.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-color: rgba(184, 189, 38, 0);
+            height: 8em;
+        }
+
+        .navbar .image-on {
+            height: 8em !important;
         }
 
         .navbar-brand:hover {
@@ -139,10 +147,12 @@
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container-fluid">
-            <img src="{{ asset('images/author/pu_logo.png') }}" class="image-on" alt="" width="7%">
-            <img src="{{ asset('images/author/jpt_logo.png') }}" class="image-on" alt="" width="7%">
-        </div>
+        {{-- <div class="container-fluid"> --}}
+        {{-- <img src="{{ asset('images/author/pu_logo.png') }}" class="image-on" alt="" width="7%"> --}}
+        {{-- <img src="{{ asset('images/author/header.png') }}" class="image-on" alt="" width="100%"
+                height="10px"> --}}
+        {{-- <img src="{{ asset('images/author/jpt_logo.png') }}" class="image-on" alt="" width="7%"> --}}
+        {{-- </div> --}}
     </nav>
 
     <div id="map"></div>
