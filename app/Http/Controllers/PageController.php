@@ -55,7 +55,7 @@ class PageController extends Controller
         }
 
         // return $data;
-        return view('page.index', compact('data'));
+        return view('Page.index', compact('data'));
     }
 
     public function dashboard()

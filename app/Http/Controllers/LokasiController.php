@@ -26,7 +26,7 @@ class LokasiController extends Controller
             ->select('id', 'lingkungan',)
             ->get();
 
-        return view('lokasi.index', compact('page_title', 'page_description', 'breadcrumbs', 'lingkungan'));
+        return view('Lokasi.index', compact('page_title', 'page_description', 'breadcrumbs', 'lingkungan'));
     }
 
     public function list()
@@ -75,7 +75,7 @@ class LokasiController extends Controller
             ->select('id', 'lingkungan',)
             ->get();
 
-        return view('lokasi.add', compact('page_title', 'page_description', 'breadcrumbs', 'lingkungan'));
+        return view('Lokasi.add', compact('page_title', 'page_description', 'breadcrumbs', 'lingkungan'));
     }
 
     public function store(Request $request)

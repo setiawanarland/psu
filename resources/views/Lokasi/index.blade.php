@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('Layout.template')
 
 @section('styles')
     <style>

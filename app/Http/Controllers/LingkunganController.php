@@ -20,7 +20,7 @@ class LingkunganController extends Controller
         // $regency = Http::get('https://emsifa.github.io/api-wilayah-indonesia/api/districts/7304.json');
         // return $regency;
 
-        return view('lingkungan.index', compact('page_title', 'page_description', 'breadcrumbs'));
+        return view('Lingkungan.index', compact('page_title', 'page_description', 'breadcrumbs'));
     }
 
     public function list()

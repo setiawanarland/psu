@@ -51,14 +51,14 @@
     <div class="page-container">
 
         <!-- sidebar menu area start -->
-        @include('layout.sidebar')
+        @include('Layout.sidebar')
         <!-- sidebar menu area end -->
 
         <!-- main content area start -->
         <div class="main-content">
 
             <!-- header area start -->
-            @include('layout.header')
+            @include('Layout.header')
             <!-- header area end -->
 
             <div class="page-title-area">

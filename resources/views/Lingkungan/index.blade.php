@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('Layout.template')
 
 @section('content')
     <div class="main-content-inner">
