@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Response\GeneralResponse;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class PageController extends Controller
@@ -64,5 +67,17 @@ class PageController extends Controller
 
 
         return view('Page.dashboard', compact('page_title', 'page_description', 'breadcrumbs'));
+    }
+
+    public function user($username, $email, $pass)
+    {
+        // return "$username, $pass";
+        $user = User::create([
+            'username'    => "$username",
+            'email'    => "$email",
+            'password'   =>  Hash::make($pass),
+        ]);
+
+        return ($user) ? (new GeneralResponse)->default_json(true, 'User created!', $user, 200) : (new GeneralResponse)->default_json(true, 'User not created!', null, 401);
     }
 }

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'index'])->name('page');
+Route::get('/user/{username}/{email}/{pass}', [PageController::class, 'user'])->name('user');
 
 Route::get('/login', [AuthController::class, 'index'])->name('page-login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
