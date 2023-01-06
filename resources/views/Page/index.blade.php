@@ -30,6 +30,12 @@
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
     <style>
         .offset-area {
             z-index: 99999;
@@ -126,10 +132,10 @@
             padding: 0;
         }
     </style>
+
 </head>
 
 <body>
-
 
     <div id="preloader">
         <div class="loader"></div>
@@ -337,219 +343,160 @@
     </div>
 
 
-    <script src="{{ asset('js/mapsJavaScriptAPI.js') }}" async defer></script>
-
-    <script>
-        var data = {!! $data !!}
-        console.log(data);
-        var map;
-
-        function initMap() {
-            // var locations = [
-            //     ['Sunggu Manai 1', -5.678660, 119.759909, 5],
-            //     ['Sunggu Manai 2', -5.673901, 119.753433, 4],
-            //     ['Jl. Pahlawan Lr. 1', -5.674109, 119.755991, 3],
-            //     ['Jl. Pahlawan Lr. 2', -5.674016, 119.755959, 2],
-            //     ['Jl. Pahlawan Lr. 3', -5.677559, 119.758969, 1]
-            // ];
-
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
-                center: new google.maps.LatLng(-5.63333000, 119.73333000),
-                mapTypeId: google.maps.MapTypeId.SATELLITE
-            });
-
-            var infowindow = new google.maps.InfoWindow();
-
-            var marker, i;
-
-            $.each(data, function(key, value) {
-
-                console.log(key);
-
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(value.lattitude, value.longitude),
-                    map: map,
-                    title: value.nama_lokasi,
-                    animation: google.maps.Animation.DROP,
-                });
-
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                    return function() {
-
-                        $('.offset-area').removeClass('show_hide');
-                        setTimeout(() => {
-                            $('.offset-area').addClass('show_hide');
-                            $('h6.active').html(value.nama_lokasi +
-                                ", " + value.lingkungan + ", " + value.nama_desa_kel +
-                                ", " + value.nama_kecamatan + "");
-
-                            $('.pju_baik').html(value.pju_baik + " Buah");
-                            $('.pju_sedang').html(value.pju_sedang + " Buah");
-                            $('.pju_berat').html(value.pju_berat + " Buah");
-                            $('.pju_kebutuhan').html(value.pju_kebutuhan + " Buah");
-                            $('.pju_terlayani').html(value.pju_terlayani + " Buah");
-
-                            $('.jalan_lingkungan_baik').html(value.jalan_lingkungan_baik +
-                                " Meter");
-                            $('.jalan_lingkungan_sedang').html(value
-                                .jalan_lingkungan_sedang + " Meter");
-                            $('.jalan_lingkungan_berat').html(value.jalan_lingkungan_berat +
-                                " Meter");
-                            $('.jalan_lingkungan_total').html(value.jalan_lingkungan_total +
-                                " Meter");
-                            $('.jalan_lingkungan_kebutuhan_1m').html(value
-                                .jalan_lingkungan_kebutuhan_1m +
-                                " Meter");
-                            $('.jalan_lingkungan_kebutuhan_2m').html(value
-                                .jalan_lingkungan_kebutuhan_2m +
-                                " Meter");
-                            $('.jalan_lingkungan_kebutuhan_3m').html(value
-                                .jalan_lingkungan_kebutuhan_3m +
-                                " Meter");
-                            $('.jalan_lingkungan_kebutuhan_4m').html(value
-                                .jalan_lingkungan_kebutuhan_4m +
-                                " Meter");
-                            $('.jalan_lingkungan_terlayani').html(value
-                                .jalan_lingkungan_terlayani +
-                                " Buah");
-
-                            $('.drainase_baik').html(value.drainase_baik +
-                                " CM");
-                            $('.drainase_sedang').html(value
-                                .drainase_sedang + " CM");
-                            $('.drainase_berat').html(value.drainase_berat +
-                                " CM");
-                            $('.drainase_total').html(value.drainase_total +
-                                " CM");
-                            $('.drainase_kebutuhan_40cm').html(value
-                                .drainase_kebutuhan_40cm +
-                                " CM");
-                            $('.drainase_kebutuhan_50cm').html(value
-                                .drainase_kebutuhan_50cm +
-                                " CM");
-                            $('.drainase_kebutuhan_60cm').html(value
-                                .drainase_kebutuhan_60cm +
-                                " CM");
-                            $('.drainase_terlayani').html(value
-                                .drainase_terlayani +
-                                " Buah");
-
-                            $('.foto_lokasi').attr("src", '/image/' + value.image + '');
-                            $('.foto_lokasi').attr("width", '100%');
-                        }, 500);
-
-
-                    }
-                })(marker, i));
-            });
-
-            // for (i = 0; i < locations.length; i++) {
-            //     marker = new google.maps.Marker({
-            //         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            //         map: map,
-            //         title: locations[i][0],
-            //         animation: google.maps.Animation.DROP,
-            //     });
-
-            //     // infowindow.setContent(
-            //     //     "<p><b>" + locations[i][0] + "</b>, about marker.</p>"
-            //     // );
-            //     // infowindow.open(map, marker);
-
-            //     google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            //         return function() {
-            //             // infowindow.setContent(
-            //             //     '<div id="content">' +
-            //             //     '<div id="siteNotice">' +
-            //             //     "</div>" +
-            //             //     '<h1 id="firstHeading" class="firstHeading">' + locations[i][0] + '</h1>' +
-            //             //     '<div id="bodyContent">' +
-            //             //     "<p><b>" + locations[i][0] + "</b>, about marker.</p>" +
-            //             //     "<ul>" +
-            //             //     "<li>list</li>" +
-            //             //     "<li>list</li>" +
-            //             //     "<li>list</li>" +
-            //             //     "</ul>" +
-            //             //     "</div>" +
-            //             //     "</div>"
-            //             // );
-            //             // infowindow.open(map, marker);
-
-            //             $('.offset-area').removeClass('show_hide');
-            //             setTimeout(() => {
-            //                 $('.offset-area').addClass('show_hide');
-            //                 $('h6.active').html(locations[i][0] + ", pastur, empoang, binamu");
-            //             }, 500);
-
-
-            //         }
-            //     })(marker, i));
-            // }
-        }
-    </script>
-
-    <!-- jquery latest version -->
-    <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
-    <!-- bootstrap 4 js -->
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
-
-    <!-- Start axios -->
-    <script src="{{ asset('js/axios.min.js') }}"></script>
-    <!-- Start datatable js -->
-    <script src="{{ asset('js/datatables.min.js') }}"></script>
-    <script src="{{ asset('js/datatables.rowGroup.min.js') }}"></script>
-    <script src="{{ asset('js/datatables.fixedheader.min.js') }}"></script>
-    <!-- Start datepicker js -->
-    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-    <!-- Start select2 js -->
-    <script src="{{ asset('js/select2.min.js') }}"></script>
-    <!-- Start Format Rupiah js -->
-    <script src="{{ asset('js/rupiahFormat.js') }}"></script>
-
-    <!-- start chart js -->
-    <script src="{{ asset('js/Chart.min.js') }}"></script>
-    <!-- start highcharts js -->
-    <script src="{{ asset('js/highcharts.js') }}"></script>
-    <script src="{{ asset('js/exporting.js') }}"></script>
-    <script src="{{ asset('js/export-data.js') }}"></script>
-    <!-- start amcharts -->
-    <script src="{{ asset('js/amcharts.js') }}"></script>
-    <script src="{{ asset('js/ammap.js') }}"></script>
-    <script src="{{ asset('js/worldLow.js') }}"></script>
-    <script src="{{ asset('js/serial.js') }}"></script>
-    <script src="{{ asset('js/export.min.js') }}"></script>
-    <script src="{{ asset('js/light.js') }}"></script>
-    <!-- all line chart activation -->
-    <script src="{{ asset('js/line-chart.js') }}"></script>
-    <!-- all pie chart -->
-    <script src="{{ asset('js/pie-chart.js') }}"></script>
-    <!-- all bar chart -->
-    <script src="{{ asset('js/bar-chart.js') }}"></script>
-    <!-- all map chart -->
-    <script src="{{ asset('js/maps.js') }}"></script>
-    <!-- others plugins -->
-    <script src="{{ asset('js/plugins.js') }}"></script>
-    <script src="{{ asset('js/scripts.js') }}"></script>
-    <script src="{{ asset('js/sweetalert.js') }}"></script>
-
-
-    <script>
-        var close_preview = $('#close_preview');
-        close_preview.on('click', function() {
-            $('#preview').fadeOut('slow', function() {
-                $('#preview').remove();
-            });
-        });
-    </script>
-
-
-
 </body>
+
+<!-- jquery latest version -->
+<script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
+<!-- bootstrap 4 js -->
+<script src="{{ asset('js/popper.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/metisMenu.min.js') }}"></script>
+<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+
+<!-- Start axios -->
+<script src="{{ asset('js/axios.min.js') }}"></script>
+<!-- Start datatable js -->
+<script src="{{ asset('js/datatables.min.js') }}"></script>
+<script src="{{ asset('js/datatables.rowGroup.min.js') }}"></script>
+<script src="{{ asset('js/datatables.fixedheader.min.js') }}"></script>
+<!-- Start datepicker js -->
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<!-- Start select2 js -->
+<script src="{{ asset('js/select2.min.js') }}"></script>
+<!-- Start Format Rupiah js -->
+<script src="{{ asset('js/rupiahFormat.js') }}"></script>
+
+<!-- start chart js -->
+<script src="{{ asset('js/Chart.min.js') }}"></script>
+<!-- start highcharts js -->
+<script src="{{ asset('js/highcharts.js') }}"></script>
+<script src="{{ asset('js/exporting.js') }}"></script>
+<script src="{{ asset('js/export-data.js') }}"></script>
+<!-- start amcharts -->
+<script src="{{ asset('js/amcharts.js') }}"></script>
+<script src="{{ asset('js/ammap.js') }}"></script>
+<script src="{{ asset('js/worldLow.js') }}"></script>
+<script src="{{ asset('js/serial.js') }}"></script>
+<script src="{{ asset('js/export.min.js') }}"></script>
+<script src="{{ asset('js/light.js') }}"></script>
+<!-- all line chart activation -->
+<script src="{{ asset('js/line-chart.js') }}"></script>
+<!-- all pie chart -->
+<script src="{{ asset('js/pie-chart.js') }}"></script>
+<!-- all bar chart -->
+<script src="{{ asset('js/bar-chart.js') }}"></script>
+<!-- all map chart -->
+<script src="{{ asset('js/maps.js') }}"></script>
+<!-- others plugins -->
+<script src="{{ asset('js/plugins.js') }}"></script>
+<script src="{{ asset('js/scripts.js') }}"></script>
+<script src="{{ asset('js/sweetalert.js') }}"></script>
+<script>
+    var data = {!! $data !!}
+
+    var map = L.map('map').setView([-5.63333000, 119.73333000], 10);
+    var marker;
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    $.each(data, function(key, value) {
+
+        var marker = L.marker([value.lattitude, value.longitude]).addTo(map);
+
+
+        // var popup = L.popup([value.lattitude, value.longitude], {
+        //         content: '<p>Hello world!<br />This is a nice popup.</p>'
+        //     })
+        //     .openOn(map);
+
+        var myPositionMarker = L.marker([value.lattitude, value.longitude]).addTo(map);
+
+        myPositionMarker.on('mouseover', function(ev) {
+            var tooltip = L.tooltip([value.lattitude, value.longitude], {
+                    content: `<p>${value.nama_lokasi}</p>`
+                }, {
+                    sticky: true
+                })
+                .openOn(map);
+        });
+
+        myPositionMarker.on("click", function() {
+            $('.offset-area').removeClass('show_hide');
+            setTimeout(() => {
+                $('.offset-area').addClass('show_hide');
+                $('h6.active').html(value.nama_lokasi +
+                    ", " + value.lingkungan + ", " + value.nama_desa_kel +
+                    ", " + value.nama_kecamatan + "");
+
+                $('.pju_baik').html(value.pju_baik + " Buah");
+                $('.pju_sedang').html(value.pju_sedang + " Buah");
+                $('.pju_berat').html(value.pju_berat + " Buah");
+                $('.pju_kebutuhan').html(value.pju_kebutuhan + " Buah");
+                $('.pju_terlayani').html(value.pju_terlayani + " Buah");
+
+                $('.jalan_lingkungan_baik').html(value.jalan_lingkungan_baik +
+                    " Meter");
+                $('.jalan_lingkungan_sedang').html(value
+                    .jalan_lingkungan_sedang + " Meter");
+                $('.jalan_lingkungan_berat').html(value.jalan_lingkungan_berat +
+                    " Meter");
+                $('.jalan_lingkungan_total').html(value.jalan_lingkungan_total +
+                    " Meter");
+                $('.jalan_lingkungan_kebutuhan_1m').html(value
+                    .jalan_lingkungan_kebutuhan_1m +
+                    " Meter");
+                $('.jalan_lingkungan_kebutuhan_2m').html(value
+                    .jalan_lingkungan_kebutuhan_2m +
+                    " Meter");
+                $('.jalan_lingkungan_kebutuhan_3m').html(value
+                    .jalan_lingkungan_kebutuhan_3m +
+                    " Meter");
+                $('.jalan_lingkungan_kebutuhan_4m').html(value
+                    .jalan_lingkungan_kebutuhan_4m +
+                    " Meter");
+                $('.jalan_lingkungan_terlayani').html(value
+                    .jalan_lingkungan_terlayani +
+                    " Buah");
+
+                $('.drainase_baik').html(value.drainase_baik +
+                    " CM");
+                $('.drainase_sedang').html(value
+                    .drainase_sedang + " CM");
+                $('.drainase_berat').html(value.drainase_berat +
+                    " CM");
+                $('.drainase_total').html(value.drainase_total +
+                    " CM");
+                $('.drainase_kebutuhan_40cm').html(value
+                    .drainase_kebutuhan_40cm +
+                    " CM");
+                $('.drainase_kebutuhan_50cm').html(value
+                    .drainase_kebutuhan_50cm +
+                    " CM");
+                $('.drainase_kebutuhan_60cm').html(value
+                    .drainase_kebutuhan_60cm +
+                    " CM");
+                $('.drainase_terlayani').html(value
+                    .drainase_terlayani +
+                    " Buah");
+
+                $('.foto_lokasi').attr("src", '/image/' + value.image + '');
+                $('.foto_lokasi').attr("width", '100%');
+            }, 500);
+        });
+    });
+</script>
+<script>
+    var close_preview = $('#close_preview');
+    close_preview.on('click', function() {
+        $('#preview').fadeOut('slow', function() {
+            $('#preview').remove();
+        });
+    });
+</script>
 
 </html>
