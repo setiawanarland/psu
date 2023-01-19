@@ -19,7 +19,8 @@ class CreateLokasisTable extends Migration
             $table->string('nama_lokasi', 100);
             $table->double('lattitude')->nullable();
             $table->double('longitude')->nullable();
-            $table->string('image');
+            $table->string('image1');
+            $table->string('image2');
             $table->timestamps();
         });
     }

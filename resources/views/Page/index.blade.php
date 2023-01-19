@@ -331,9 +331,15 @@
 
                     <div class="timeline-task">
                         <div class="tm-title">
-                            <h4 class="title-item text-uppercase">Foto lokasi</h4>
+                            <h4 class="title-item text-uppercase">Foto lokasi 1</h4>
                         </div>
-                        <img src="" alt="" width="100%" class="mb-1 foto_lokasi">
+                        <img src="" alt="" width="100%" class="mb-1 foto_lokasi_1">
+                    </div>
+                    <div class="timeline-task">
+                        <div class="tm-title">
+                            <h4 class="title-item text-uppercase">Foto lokasi 2</h4>
+                        </div>
+                        <img src="" alt="" width="100%" class="mb-1 foto_lokasi_2">
                     </div>
                     <hr>
 
@@ -484,8 +490,10 @@
                     .drainase_terlayani +
                     " Buah");
 
-                $('.foto_lokasi').attr("src", '/image/' + value.image + '');
-                $('.foto_lokasi').attr("width", '100%');
+                $('.foto_lokasi_1').attr("src", '/image/' + value.image1 + '');
+                $('.foto_lokasi_1').attr("width", '100%');
+                $('.foto_lokasi_2').attr("src", '/image/' + value.image2 + '');
+                $('.foto_lokasi_2').attr("width", '100%');
             }, 500);
         });
     });

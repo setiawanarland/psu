@@ -38,18 +38,11 @@ class LokasiController extends Controller
     public function getList()
     {
         $lokasi = DB::table("lokasis")
-            ->join('lingkungans', 'lokasis.lingkungan_id', 'lingkungans.id')
+            ->select('lokasis.*', 'lingkungans.nama_kec', 'lingkungans.nama_deskel', 'lingkungans.lingkungan')
+            ->join('lingkungans', 'lingkungans.id', 'lokasis.lingkungan_id')
             ->get();
 
         foreach ($lokasi as $key => $value) {
-            $lingkungan = DB::table('lingkungans')->where('id', $value->lingkungan_id)->get();
-            // foreach ($lingkungan as $index => $val) {
-            //     $village = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kelurahan/{$val->desa_kel}");
-            //     $district = Http::get("https://dev.farizdotid.com/api/daerahindonesia/kecamatan/{$val->kecamatan}");
-            //     $value->nama_kecamatan = $district['nama'];
-            //     $value->nama_desa_kel = $village['nama'];
-            //     $value->lingkungan = $val->lingkungan;
-            // }
             $value->coordinat = "$value->lattitude, $value->longitude";
         }
 
@@ -85,7 +78,8 @@ class LokasiController extends Controller
             'lokasi' => 'required',
             'lattitude' => 'required',
             'longitude' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'pju_baik' => 'required',
             'pju_sedang' => 'required',
             'pju_berat' => 'required',
@@ -98,7 +92,7 @@ class LokasiController extends Controller
             'jalan_lingkungan_kebutuhan_1m' => 'required',
             'jalan_lingkungan_kebutuhan_2m' => 'required',
             'jalan_lingkungan_kebutuhan_3m' => 'required',
-            'jalan_lingkungan_kebutuhan_3m+' => 'required',
+            'jalan_lingkungan_kebutuhan_4m' => 'required',
             'jalan_lingkungan_terlayani' => 'required',
             'drainase_baik' => 'required',
             'drainase_sedang' => 'required',
@@ -120,12 +114,20 @@ class LokasiController extends Controller
         $data->lattitude = $request->lattitude;
         $data->longitude = $request->longitude;
 
-        if ($image = $request->file('image')) {
-            $destinationPath = 'image/';
-            $lokasiImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $lokasiImage);
+        if ($image1 = $request->file('image1')) {
+            $destinationPath1 = 'image/';
+            $lokasiImage1 = date('YmdHis') . "_1." . $image1->getClientOriginalExtension();
+            $image1->move($destinationPath1, $lokasiImage1);
 
-            $data->image = "$lokasiImage";
+            $data->image1 = "$lokasiImage1";
+        }
+
+        if ($image2 = $request->file('image2')) {
+            $destinationPath2 = 'image/';
+            $lokasiImage2 = date('YmdHis') . "_2." . $image2->getClientOriginalExtension();
+            $image2->move($destinationPath2, $lokasiImage2);
+
+            $data->image2 = "$lokasiImage2";
         }
 
         $data->save();
@@ -154,13 +156,13 @@ class LokasiController extends Controller
 
         $drainase = new Drainase();
         $drainase->lokasi_id = $data->id;
-        $drainase->baik = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_baik));
-        $drainase->sedang = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_sedang));
-        $drainase->berat = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_berat));
-        $drainase->total_panjang = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_total));
-        $drainase->kebutuhan_40cm = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_kebutuhan_40cm));
-        $drainase->kebutuhan_50cm = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_kebutuhan_50cm));
-        $drainase->kebutuhan_60cm = floatval(preg_replace('/[^\d\.]+/', '', $request->dranase_kebutuhan_60cm));
+        $drainase->baik = floatval(preg_replace('/[^\d\.]+/', '', $request->drainase_baik));
+        $drainase->sedang = floatval(preg_replace('/[^\d\.]+/', '', $request->drainase_sedang));
+        $drainase->berat = floatval(preg_replace('/[^\d\.]+/', '', $request->drainase_berat));
+        $drainase->total_panjang = floatval(preg_replace('/[^\d\.]+/', '', $request->drainase_total));
+        $drainase->kebutuhan_40cm = floatval(preg_replace('/[^\d\.]+/', '', $request->drainase_kebutuhan_40cm));
+        $drainase->kebutuhan_50cm = floatval(preg_replace('/[^\d\.]+/', '', $request->drainase_kebutuhan_50cm));
+        $drainase->kebutuhan_60cm = floatval(preg_replace('/[^\d\.]+/', '', $request->drainase_kebutuhan_60cm));
         $drainase->terlayani = intval($request->drainase_terlayani);
         $drainase->save();
 
@@ -173,9 +175,9 @@ class LokasiController extends Controller
 
     public function show(Request $request, $id)
     {
-        $pembelian = Lokasi::where('id', $id)->first();
+        $lokasi = Lokasi::where('id', $id)->first();
 
-        return $pembelian;
+        return $lokasi;
     }
 
     /**

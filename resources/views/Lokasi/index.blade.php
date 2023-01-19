@@ -117,7 +117,8 @@
                 </div>
                 <div class="modal-body modalDetail">
 
-                    <img class="lokasiPreview" src="">
+                    <img class="lokasiPreview1" src="">
+                    <img class="lokasiPreview2" src="">
 
                 </div>
             </div>
@@ -406,8 +407,12 @@
             axios.get('/lokasi/show/' + key)
                 .then(function(res) {
                     let data = res.data;
+                    console.log(data);
 
-                    let element = `<img class="lokasiPreview" src="/image/${data.image}" width="100%">`;
+                    let element = `<img class="lokasiPreview1" src="/image/${data.image1}" width="100%">
+                    <br>
+                    <img class="lokasiPreview2" src="/image/${data.image2}" width="100%">`;
+                    // element += `<img class="lokasiPreview2" src="/image/${data.image2}" width="100%">`;
 
                     $('.modalDetail').children().remove();
                     $('.modalDetail').append(element);

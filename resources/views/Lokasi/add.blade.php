@@ -29,13 +29,15 @@
             animation: shake .35s;
         }
 
-        .image-preview {
+        .image-preview-1,
+        .image-preview-2 {
             width: 50%;
             max-width: 167px;
             display: none
         }
 
-        .change-image {
+        .change-image-1,
+        .change-image-2 {
             display: none;
             text-align: center;
             color: #FFF;
@@ -95,7 +97,7 @@
                                     <option value="null">Pilih Lingkungan</option>
                                     @foreach ($lingkungan as $index => $value)
                                         <option value="{{ $value->id }}">
-                                            {{ Str::ucfirst($value->lingkungan) }}
+                                            {{ Str::upper($value->lingkungan) }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -117,15 +119,27 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="col-form-label">Foto Lokasi</label>
+                                <label for="" class="col-form-label">Foto Lokasi 1</label>
                                 <div class="image-input">
-                                    <label for="image" class="label-image image-button"><i
+                                    <label for="image1" class="label-image image-button-1"><i
                                             class="fa fa-image i-image"></i>
                                         Pilih Foto</label>
-                                    <input type="file" class="input-image" accept="image/*" id="image"
-                                        name="image">
-                                    <img src="" class="image-preview rounded float-center">
-                                    <span class="change-image"><i class="fa fa-image i-image"></i>Pilih foto lain</span>
+                                    <input type="file" class="input-image" accept="image/*" id="image1"
+                                        name="image1">
+                                    <img src="" class="image-preview-1 rounded float-center">
+                                    <span class="change-image-1"><i class="fa fa-image i-image"></i>Pilih foto lain</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-form-label">Foto Lokasi 2</label>
+                                <div class="image-input">
+                                    <label for="image2" class="label-image image-button-2"><i
+                                            class="fa fa-image i-image"></i>
+                                        Pilih Foto</label>
+                                    <input type="file" class="input-image" accept="image/*" id="image2"
+                                        name="image2">
+                                    <img src="" class="image-preview-2 rounded float-center">
+                                    <span class="change-image-2"><i class="fa fa-image i-image"></i>Pilih foto lain</span>
                                 </div>
                             </div>
 
@@ -240,7 +254,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="> 3 Meter"
-                                    name="jalan_lingkungan_kebutuhan_3m+">
+                                    name="jalan_lingkungan_kebutuhan_4m">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Meter</span>
                                     <div class="invalid-feedback"></div>
@@ -534,32 +548,60 @@
 
 
 
-        $('#image').on('change', function() {
+        $('#image1').on('change', function() {
             $input = $(this);
             if ($input.val().length > 0) {
                 fileReader = new FileReader();
                 fileReader.onload = function(data) {
                     console.log(data);
-                    $('.image-preview').attr('src', data.target.result);
+                    $('.image-preview-1').attr('src', data.target.result);
                 }
                 fileReader.readAsDataURL($input.prop('files')[0]);
-                $('.image-button').css('display', 'none');
-                $('.image-preview').css('display', 'block');
-                $('.image-preview').css('margin', '0 auto');
-                $('.change-image').css('display', 'inline-block');
-                $('.change-image').css('margin', '0 auto');
+                $('.image-button-1').css('display', 'none');
+                $('.image-preview-1').css('display', 'block');
+                $('.image-preview-1').css('margin', '0 auto');
+                $('.change-image-1').css('display', 'inline-block');
+                $('.change-image-1').css('margin', '0 auto');
             }
         });
 
-        $('.change-image').on('click', function() {
+        $('.change-image-1').on('click', function() {
             $control = $(this);
-            $('#image').val('');
-            $preview = $('.image-preview');
+            $('#image1').val('');
+            $preview = $('.image-preview-1');
             $preview.attr('src', '');
             $preview.css('display', 'none');
             $control.css('display', 'none');
-            $('.image-button').css('display', 'inline-block');
-            $('.image-button').css('margin', '0 auto');
+            $('.image-button-1').css('display', 'inline-block');
+            $('.image-button-1').css('margin', '0 auto');
+        });
+
+        $('#image2').on('change', function() {
+            $input = $(this);
+            if ($input.val().length > 0) {
+                fileReader = new FileReader();
+                fileReader.onload = function(data) {
+                    console.log(data);
+                    $('.image-preview-2').attr('src', data.target.result);
+                }
+                fileReader.readAsDataURL($input.prop('files')[0]);
+                $('.image-button-1').css('display', 'none');
+                $('.image-preview-2').css('display', 'block');
+                $('.image-preview-2').css('margin', '0 auto');
+                $('.change-image-2').css('display', 'inline-block');
+                $('.change-image-2').css('margin', '0 auto');
+            }
+        });
+
+        $('.change-image-2').on('click', function() {
+            $control = $(this);
+            $('#image2').val('');
+            $preview = $('.image-preview-2');
+            $preview.attr('src', '');
+            $preview.css('display', 'none');
+            $control.css('display', 'none');
+            $('.image-button-2').css('display', 'inline-block');
+            $('.image-button-2').css('margin', '0 auto');
         });
 
         // create lokasi
@@ -581,6 +623,7 @@
 
         $(document).ready(function() {
             dataRow.init();
+            $('#lingkungan').select2();
 
         });
     </script>
