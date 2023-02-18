@@ -143,59 +143,11 @@
                                 </div>
                             </div>
 
-                            <h4 class="header-title mt-5">Penerangan Jalan Umum (PJU)</h4>
-                            <p class="font-14 mb-0">Jumlah PJU yang sudah ada</p>
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Baik" name="pju_baik">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">Buah</span>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Rusak Sedang" name="pju_sedang">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">Buah</span>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Rusak Berat" name="pju_berat">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">Buah</span>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-
-                            <p class="font-14 mb-0">Jumlah PJU yang dibutuhkan</p>
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="PJU yang dibutuhkan"
-                                    name="pju_dibutuhkan">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">Buah</span>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-
-                            <p class="font-14 mb-0">Jumlah rumah tangga yang terlayani</p>
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Rumah tangga yang terlayani"
-                                    name="pju_terlayani">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">Buah</span>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-
                             <h4 class="header-title mt-5">Jalan Lingkungan</h4>
                             <p class="font-14 mb-0">Kondisi jalan lingkungan</p>
 
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Baik"
-                                    name="jalan_lingkungan_baik">
+                                <input type="text" class="form-control" placeholder="Baik" name="jalan_lingkungan_baik">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Meter</span>
                                     <div class="invalid-feedback"></div>
@@ -340,6 +292,53 @@
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Rumah tangga yang terlayani"
                                     name="drainase_terlayani">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Buah</span>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <h4 class="header-title mt-5">Penerangan Jalan Umum (PJU)</h4>
+                            <p class="font-14 mb-0">Jumlah PJU yang sudah ada</p>
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Baik" name="pju_baik">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Buah</span>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Rusak Sedang" name="pju_sedang">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Buah</span>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Rusak Berat" name="pju_berat">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Buah</span>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <p class="font-14 mb-0">Jumlah PJU yang dibutuhkan</p>
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="PJU yang dibutuhkan"
+                                    name="pju_kebutuhan">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Buah</span>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <p class="font-14 mb-0">Jumlah rumah tangga yang terlayani</p>
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Rumah tangga yang terlayani"
+                                    name="pju_terlayani">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Buah</span>
                                     <div class="invalid-feedback"></div>
@@ -585,7 +584,7 @@
                     $('.image-preview-2').attr('src', data.target.result);
                 }
                 fileReader.readAsDataURL($input.prop('files')[0]);
-                $('.image-button-1').css('display', 'none');
+                $('.image-button-2').css('display', 'none');
                 $('.image-preview-2').css('display', 'block');
                 $('.image-preview-2').css('margin', '0 auto');
                 $('.change-image-2').css('display', 'inline-block');
@@ -602,6 +601,20 @@
             $control.css('display', 'none');
             $('.image-button-2').css('display', 'inline-block');
             $('.image-button-2').css('margin', '0 auto');
+        });
+
+        $('#lattitude').mask('-0.000000');
+        $('#longitude').mask('000.000000');
+        // $('#lattitude').inputmask({
+        //     regex: String.raw `^-\d{1,1}\.\d{7}$`
+        // });
+
+        // $('.longitude').inputmask({
+        //     regex: String.raw `^-?\d{1,3}\.\d{7}$`
+        // });
+
+        $(document).on('keyup', '#lattitude', function() {
+            console.log($(this).val());
         });
 
         // create lokasi

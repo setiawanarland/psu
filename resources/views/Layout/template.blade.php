@@ -159,6 +159,8 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/sweetalert.js') }}"></script>
+    <!-- mask -->
+    <script src="{{ asset('js/jquery.mask.js') }}"></script>
 
     {{-- script --}}
     @yield('scripts')

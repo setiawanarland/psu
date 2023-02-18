@@ -83,7 +83,7 @@ class LokasiController extends Controller
             'pju_baik' => 'required',
             'pju_sedang' => 'required',
             'pju_berat' => 'required',
-            'pju_dibutuhkan' => 'required',
+            'pju_kebutuhan' => 'required',
             'pju_terlayani' => 'required',
             'jalan_lingkungan_baik' => 'required',
             'jalan_lingkungan_sedang' => 'required',
